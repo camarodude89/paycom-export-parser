@@ -1,4 +1,4 @@
-from pandas import DataFrame, read_excel
+from pandas import read_excel
 import pandas as pd
 import re
 
@@ -23,7 +23,7 @@ def ordinal_suffix_fix(s):
 
 def main():
     file = r'20181207070755_Active Team members_.xls'
-    df = pd.read_excel(file)
+    df = read_excel(file)
     df['Employee_Name'] = df['Employee_Name'].str.title()
 
     # Correctly capitalizes all names with 'Mc' and 'Mac' in them such as 'McCoy' or 'MacDonald'
@@ -51,6 +51,7 @@ def main():
     df['Last_Name'].replace(to_replace=spaced_last_name_list, value=corrected_last_name_list, inplace=True)
 
     df.to_csv('Paycom_Parsed_Export.csv', index=False)
+
 
 if __name__ == "__main__":
     main()
